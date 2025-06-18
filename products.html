@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/products.css">
+    <title>Our Products</title>
+</head>
+<body>
+    <header>
+    <div class="logo">
+      <img src="GouRoo®.png" alt="Company Logo">
+      <p style="font-family: 'Shrikhand'; font-size: 40px;">GouRoo®</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li style="color: #ffcc00; font-weight: bold;">Products</li>
+        <li><a href="/cart.html">Cart</a></li>
+        <li><a href="/contactus.html">Contact Us</a></li>
+      </ul>
+    </nav>
+    </header>
+    <h1 id="ourpro">Our Products:</h1>
+    <div class="products">
+            <a href="/liceoil.html">
+            <div class="product">
+                <img src="/liceoiltransparent.png" alt="Product 1">
+                <h1 id="productname" style="font-family: 'Shrikand'; font-size: 1.5em; margin-bottom: 10px;">Lice Control Oil</h1>
+                <h3 id="price">150/-</h3>
+                <button id="cartbutton">Add to Cart</button>
+            </div>
+            </a>
+            <a href="/hairoilpage.html">
+            <div class="product">
+                <img src="/hairoiltransparent.png" alt="Product 1">
+                <h1 id="productname" style="font-family: 'Shrikand'; font-size: 1.5em; margin-bottom: 10px;">Natural Hair Oil</h1>
+                <h3 id="price">250/-</h3>
+                <button id="cartbutton">Add to Cart</button>
+            </div>
+            </a>
+        </div>
+    </div>
+
+<script>
+  const cartButtons = document.querySelectorAll('#cartbutton');
+
+  cartButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation(); // Stop the click from reaching the <a> tag
+      event.preventDefault();  // Prevent anchor navigation if clicked inside <a>
+
+      const product = button.closest('.product');
+      const imgSrc = product.querySelector('img').src;
+      const name = product.querySelector('h1').innerText;
+      const price = product.querySelector('h3').innerText;
+
+      const cartItem = { img: imgSrc, name: name, price: price, quantity: 1 };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      const existingItem = cart.find(item => item.name === cartItem.name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(cartItem);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    });
+  });
+</script>
+
+
+<div id="toast" class="toast">Product added to cart</div>
+
+</body>
+</html>

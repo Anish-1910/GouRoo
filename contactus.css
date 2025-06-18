@@ -1,0 +1,130 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 30px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 55px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    .contact-page {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    #heading {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    #headingdes {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .social-icons a {
+      color: #000000;
+      font-size: 22px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .social-icons a.instagram { background: #e1306c; }
+    .social-icons a.facebook { background: #3b5998; }
+    .social-icons a.twitter  { background: #1da1f2; }
+    .social-icons a.whatsapp { background: #25d366; }
+
+    .social-icons a:hover {
+      opacity: 0.9;
+    }
+    footer{
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      }
+
+      #offers {
+        font-size: 12px;
+      }
+      .address {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      .address h3{
+        font-size: 23px;
+        margin-bottom: 5px;
+      }
+    .address p {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+    /* Reduce margin between header and .contact-page */
+    header {
+      margin-bottom: 20px;
+    }
+
+    .contact-page {
+      margin: 30px auto;
+    }

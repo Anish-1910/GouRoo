@@ -1,0 +1,124 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 30px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 55px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    #ourpro{
+      font-size: 40px;
+      text-align: center;
+      background-color: #fff;
+      margin: 20px auto;
+      padding: 10px;
+    }
+.product {
+  color: #000;
+  display: inline-block;
+  vertical-align: top;
+  padding: 25px 10px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 2px solid #333;
+  margin: 20px;
+  max-width: 230px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: box-shadow 1s, border-color 1s, background 1s, scale 1s;
+}
+.product:hover {
+  background: #f8f8f8;
+  border-color: #ffcc00;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  scale: 1.05;
+}
+.product img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.product a {
+  color: #000;
+  text-decoration: none;
+}
+.product button {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition-duration: 1s;
+}
+.product button:hover {
+  border-color: #ffcc00;
+  cursor: pointer;
+}
+.toast {
+  visibility: hidden;
+  min-width: 200px;
+  background-color: #ffffff;
+  color: #2d2b2b;
+  text-align: center;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
