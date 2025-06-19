@@ -122,3 +122,99 @@
   visibility: visible;
   opacity: 1;
 }
+@media (max-width: 1024px) {
+  nav ul {
+    gap: 20px;
+  }
+
+  #ourpro {
+    font-size: 32px;
+  }
+
+  .product {
+    max-width: 200px;
+    margin: 15px;
+    padding: 20px 8px;
+  }
+
+  .product img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .product button {
+    font-size: 1em;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .logo {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+  }
+
+  #ourpro {
+    font-size: 28px;
+    padding: 8px;
+  }
+
+  .product {
+    max-width: 90%;
+    width: 90%;
+    margin: 10px auto;
+    padding: 20px;
+  }
+
+  .product img {
+    width: 100%;
+    height: auto;
+  }
+
+  .product button {
+    width: 100%;
+    font-size: 1em;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    padding: 15px;
+  }
+
+  .product img {
+    width: 100%;
+    height: auto;
+  }
+
+  .product button {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  #ourpro {
+    font-size: 24px;
+    padding: 6px;
+  }
+
+  .toast {
+    font-size: 14px;
+    padding: 10px;
+    min-width: 160px;
+  }
+}
