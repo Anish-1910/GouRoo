@@ -261,3 +261,11 @@ footer {
     max-height: 300px;
   }
 }
+@media (max-width: 768px) {
+  header nav ul {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+}
