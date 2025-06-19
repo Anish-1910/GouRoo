@@ -123,3 +123,50 @@
         max-height: 300px;
       }
     }
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .logo {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .product-name {
+    font-size: 22px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-description {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .product-details {
+    padding: 20px 15px;
+  }
+
+  .product-image img {
+    max-height: 250px;
+  }
+
+  .product-container {
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+}
