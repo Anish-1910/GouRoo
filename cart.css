@@ -128,3 +128,70 @@
       margin-bottom: 10px;
       display: block;
     }
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .logo {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  #ourpro {
+    font-size: 28px;
+    padding: 8px;
+  }
+
+  .products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product {
+    width: 90%;
+  }
+
+  .product img {
+    width: 100%;
+    height: auto;
+  }
+
+  .quantity-controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .checkout-form {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  .checkout-form input,
+  .checkout-form textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .checkout-form button {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  img[src="qr.jpg"] {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+  }
+}
