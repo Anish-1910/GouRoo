@@ -132,7 +132,13 @@
   header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
+    gap:10px;
+  }
+    nav ul {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
   }
 
   .logo {
@@ -193,19 +199,5 @@
     width: 100%;
     max-width: 250px;
     height: auto;
-  }
-}
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  nav ul {
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
   }
 }
