@@ -95,6 +95,55 @@
       font-weight: bold;
       margin-top: 20px;
     }
+.payment-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  min-height: 80px;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 10px;
+}
+
+.payment-option:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-text {
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.payment-option input[type="radio"] {
+  transform: scale(1.4);
+  margin-left: 20px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .payment-option {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .payment-option input[type="radio"] {
+    align-self: flex-end;
+  }
+}
+
+
+
 
     .checkout-form {
       text-align: center;
@@ -200,4 +249,8 @@
     max-width: 250px;
     height: auto;
   }
+}
+button:disabled {
+  background-color: #aaa !important;
+  cursor: not-allowed;
 }
