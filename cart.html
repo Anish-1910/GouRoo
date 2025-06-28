@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="cart.css" />
   <title>Cart Items</title>
+  <link rel="stylesheet" href="cart.css" />
 </head>
 <body>
 
@@ -42,20 +42,56 @@
       <textarea name="address" id="address" rows="4" placeholder="Delivery Address" required></textarea>
       <span class="error" id="addressError"></span>
 
-      <!-- Payment Method -->
-      <div style="margin: 20px 0;">
-        <label style="font-weight:bold;">Choose Payment Method:</label><br/>
-        <input type="radio" name="paymentMethod" id="scanPay" value="scan" required />
-        <label for="scanPay">Scan and Pay (Corrior charges +50 included)</label><br/>
-        <input type="radio" name="paymentMethod" id="codPay" value="cod" />
-        <label for="codPay">Cash on Delivery (COD) (Additional delivery partner charges +100 included)</label>
+<!-- Payment Method -->
+<div style="margin: 20px 0;">
+  <label style="font-weight: bold; font-size: 18px;">Choose Payment Method:</label>
+
+  <div class="payment-option">
+    <div class="payment-text">
+      <strong>Scan and Pay</strong><br/>
+      Use any UPI app to scan the QR and pay.<br/>
+      <em>Courier charges of ₹50 included.</em>
+    </div>
+    <input type="radio" name="paymentMethod" id="scanPay" value="scan" required />
+  </div>
+
+  <div class="payment-option">
+    <div class="payment-text">
+      <strong>Cash on Delivery (COD)</strong><br/>
+      Pay when the product is delivered at your doorstep.<br/>
+      <em>Delivery partner charges of ₹100 included.</em>
+    </div>
+    <input type="radio" name="paymentMethod" id="codPay" value="cod" />
+  </div>
+
+  <div class="payment-option">
+    <div class="payment-text">
+      <strong>Pay with Razorpay</strong><br/>
+      Fast and secure online payment via UPI, cards or wallets.
+    </div>
+    <input type="radio" name="paymentMethod" id="razorPay" value="razorpay" />
+  </div>
+</div>
+<p id="codFinalAmount" style="font-weight:bold; font-size:16px; color:#333;"></p>
+<div id="termsSection" style="display: none; margin: 15px 0;">
+  <p id="razorpayFinalAmount" style="font-weight:bold; font-size:16px; color:#333;"></p>
+  <input type="checkbox" id="acceptTerms" /><br>
+  <label for="acceptTerms">I accept all the <a href="terms.html" target="_blank" style="color: blue; text-decoration: underline;">terms and conditions</a>.</label>
+  <span class="error" id="termsError"></span>
+</div>
+
+      <!-- Razorpay Pay Now Button -->
+      <div id="razorpaySection" style="display: none; margin-bottom: 20px;">
+        <button type="button" id="payWithRazorpay">Pay Now</button>
       </div>
+
 
       <!-- Hidden field for cart data -->
       <textarea name="cart_details" id="cartData" style="display:none;"></textarea>
 
       <!-- Scan and Pay Section -->
       <div id="scanSection" style="display: none;">
+        <p id="scanpayFinalAmount" style="font-weight:bold; font-size:16px; color:#333;"></p>
         <div style="margin: 20px 0;">
           <label style="font-weight:bold;">Scan &amp; Pay:</label>
           <div style="margin: 10px 0;">
@@ -82,155 +118,9 @@
   </div>
 
 
-  <script>
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const container = document.getElementById("cartContainer");
-    const totalPriceEl = document.getElementById("totalPrice");
-    const cartDataInput = document.getElementById("cartData");
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="cart.js"></script>
 
-    function renderCart() {
-      container.innerHTML = "";
-      let total = 0;
-
-      if (cart.length === 0) {
-        container.innerHTML = "<p style='text-align:center;'>Your cart is empty.</p>";
-        totalPriceEl.innerHTML = "";
-        return;
-      }
-
-      const cartSummary = [];
-
-      cart.forEach((item, index) => {
-        const priceValue = parseInt(item.price.replace(/[^\d]/g, ""));
-        total += priceValue * item.quantity;
-
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" style="width:250px; height:250px; border-radius:10px;"/>
-          <h1 style="font-family: 'Shrikhand'; font-size: 1.2em;">${item.name}</h1>
-          <h4>${item.price}</h4>
-          <div class="quantity-controls">
-            <button onclick="decreaseQuantity(${index})">-</button>
-            <span>Quantity: ${item.quantity}</span>
-            <button onclick="increaseQuantity(${index})">+</button>
-          </div>
-          <button onclick="removeFromCart(${index})" style="background-color:red; color:white; padding:5px 10px; border:none; border-radius:5px;">Remove</button>
-        `;
-        container.appendChild(div);
-
-        cartSummary.push(`${item.name} - Qty: ${item.quantity}`);
-      });
-
-      cartDataInput.value = cartSummary.join('\n');
-      totalPriceEl.innerHTML = `Total: ₹${total}/-`;
-    }
-
-    function increaseQuantity(index) {
-      cart[index].quantity += 1;
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    }
-
-    function decreaseQuantity(index) {
-      if (cart[index].quantity > 1) {
-        cart[index].quantity -= 1;
-      } else {
-        cart.splice(index, 1);
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    }
-
-    document.getElementById("scanPay").addEventListener("change", function () {
-      document.getElementById("scanSection").style.display = "block";
-    });
-
-    document.getElementById("codPay").addEventListener("change", function () {
-      document.getElementById("scanSection").style.display = "none";
-    });
-
-    document.getElementById("orderForm").addEventListener("submit", function(e) {
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const address = document.getElementById("address").value.trim();
-
-      let hasError = false;
-
-      document.getElementById("nameError").textContent = "";
-      document.getElementById("phoneError").textContent = "";
-      document.getElementById("addressError").textContent = "";
-      document.getElementById("screenshotError").textContent = "";
-      document.getElementById("confirmError").textContent = "";
-
-      if (name === "") {
-        document.getElementById("nameError").textContent = "Name is required.";
-        hasError = true;
-      }
-
-      if (!/^\d{10}$/.test(phone)) {
-        document.getElementById("phoneError").textContent = "Enter a valid 10-digit phone number.";
-        hasError = true;
-      }
-
-      if (address.length < 10) {
-        document.getElementById("addressError").textContent = "Please enter a valid address.";
-        hasError = true;
-      }
-
-      if (cart.length === 0) {
-        alert("Your cart is empty. Please add products to proceed.");
-        e.preventDefault();
-        return;
-      }
-
-      const scanPay = document.getElementById("scanPay").checked;
-      const codPay = document.getElementById("codPay").checked;
-
-      if (!scanPay && !codPay) {
-        alert("Please select a payment method.");
-        e.preventDefault();
-        return;
-      }
-
-      if (scanPay) {
-        const screenshot = document.getElementById("paymentScreenshot").files[0];
-        const confirmPayment = document.getElementById("confirmPayment").checked;
-
-        if (!screenshot) {
-          document.getElementById("screenshotError").textContent = "Please upload your payment screenshot.";
-          hasError = true;
-        } else if (!screenshot.type.startsWith("image/")) {
-          document.getElementById("screenshotError").textContent = "Uploaded file must be an image.";
-          hasError = true;
-        } else if (screenshot.size > 5 * 1024 * 1024) {
-          document.getElementById("screenshotError").textContent = "Image size must be less than 5MB.";
-          hasError = true;
-        }
-
-        if (!confirmPayment) {
-          document.getElementById("confirmError").textContent = "Please confirm that you've paid the full amount.";
-          hasError = true;
-        }
-      }
-
-      if (hasError) {
-        e.preventDefault();
-        return;
-      }
-
-      alert("Thank you! Your order has been placed.");
-      localStorage.removeItem("cart");
-    });
-
-    renderCart();
-  </script>
 
 </body>
 </html>
