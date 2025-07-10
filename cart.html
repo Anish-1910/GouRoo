@@ -46,14 +46,6 @@
 <div style="margin: 20px 0;">
   <label style="font-weight: bold; font-size: 18px;">Choose Payment Method:</label>
 
-  <div class="payment-option">
-    <div class="payment-text">
-      <strong>Scan and Pay</strong><br/>
-      Use any UPI app to scan the QR and pay.<br/>
-      <em>Courier charges of ₹50 included.</em>
-    </div>
-    <input type="radio" name="paymentMethod" id="scanPay" value="scan" required />
-  </div>
 
   <div class="payment-option">
     <div class="payment-text">
@@ -89,26 +81,7 @@
       <!-- Hidden field for cart data -->
       <textarea name="cart_details" id="cartData" style="display:none;"></textarea>
 
-      <!-- Scan and Pay Section -->
-      <div id="scanSection" style="display: none;">
-        <p id="scanpayFinalAmount" style="font-weight:bold; font-size:16px; color:#333;"></p>
-        <div style="margin: 20px 0;">
-          <label style="font-weight:bold;">Scan &amp; Pay:</label>
-          <div style="margin: 10px 0;">
-            <img src="qr.jpg" alt="QR Code for Payment" style="width:180px; border:1px solid #ccc; border-radius:10px;" />
-          </div>
-        </div>
 
-        <div style="margin: 20px 0;">
-          <label for="paymentScreenshot" style="font-weight:bold;">Upload Payment Screenshot:</label>
-          <input type="file" id="paymentScreenshot" name="payment_screenshot" accept="image/*" style="display:block; margin:10px auto 0 auto;" />
-          <span class="error" id="screenshotError"></span>
-        </div>
-
-        <label for="confirmPayment" style="font-weight:bold;">I confirm that I have paid the full amount.</label>
-        <input type="radio" id="confirmPayment" name="confirmPaymentRadio" />
-        <span class="error" id="confirmError"></span>
-      </div>
 
       <input type="hidden" name="_next" value="/payment.html">
       <input type="hidden" name="_captcha" value="false">
@@ -116,7 +89,6 @@
       <button type="submit">Place Order</button>
     </form>
   </div>
-
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="cart.js"></script>
