@@ -156,7 +156,7 @@
   document.getElementById("razorpayFinalAmount").innerText = `Final Amount to Pay: ₹${finalAmount}/- `;
 
   const options = {
-    key: "rzp_test_UOOw3UxgEmdKyq", // Replace with your Razorpay test/live key
+    key: "rzp_live_tXMmp49Tpt9pr6", // Replace with your Razorpay test/live key
     amount: finalAmount * 100, // Razorpay takes paise, hence *100
     currency: "INR",
     name: "GouRoo Naturals",
